@@ -1,10 +1,12 @@
+import Header from "./components/Header"
 
 
 function App() {
 
   return (
     <>
-      <h1>Este es mi proyecto de monedas</h1>
+      <h1>Estoy en mi proyecto 3 de monedas</h1>
+      <Header />
     </>
   )
 }
