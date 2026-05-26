@@ -1,15 +1,9 @@
-interface CourseProps {
-  order: number;
-  name: string;
-  symbol: string;
-  price: number;
-  priceChange: number;
-  code: string;
-}
+import type { CoinProps } from "../interfaces/CoinProps";
 
 
 
-const Coin = ({order, name, symbol, price, priceChange, code}: CourseProps) => {
+
+const Coin = ({order, name, symbol, price, priceChange, code}: CoinProps) => {
     return (
         <div>
             <h1>{order}</h1>
