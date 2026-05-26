@@ -1,8 +1,9 @@
 import { useState } from "react";
-import type { CoinProps } from "../interfaces/CoinProps";
+import type { CoinProps } from "../interfaces/Coin";
 
 const Coin = ({ order, name, symbol, price, priceChange, code }: CoinProps) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
   const addToFavorites = () => {
     setIsFavorite(!isFavorite);
