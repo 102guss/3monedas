@@ -3,7 +3,7 @@ import type { CoinProps } from "../interfaces/Coin";
 import coins from "../data/coins";
 import Coin from "./Coin";
 
-const CoinsTable = () => {
+const CoinsTable = () => {  
   const [coinsList, setCoinsList] = useState<CoinProps[]>(coins);
   const searchInput = useRef<HTMLInputElement>(null);
 
@@ -16,23 +16,23 @@ const CoinsTable = () => {
   };
 
   return (
-    <>
+    < >
       <input
         type="text"
         placeholder="Buscar criptomoneda"
         ref={searchInput}
         onChange={handleSearch}
       />
-      <table>
-        <thead>
+      <table className="w-full text-left border-collapse">
+        <thead className="bg-gray-100">
           <tr>
-            <th>Orden</th>
-            <th>Nombre</th>
-            <th>Código</th>
-            <th>Simbolo</th>
+            <th className="px-4 py-2 text-gray-600 font-medium">Orden</th>
+            <th className="px-4 py-2 text-gray-600 font-medium">Nombre</th>
+            <th className="px-4 py-2 text-gray-600 font-medium">Código</th>
+            <th className="px-4 py-2 text-gray-600 font-medium">Simbolo</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="divide-y divide-gray-200">
           {coinsList.map((coin) => (
             <Coin key={coin.order} {...coin} />
           ))}
