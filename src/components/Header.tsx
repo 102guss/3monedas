@@ -1,6 +1,6 @@
 const Header = () => (
   <header>
-    <img src="/src/assets/vite.svg" alt="logo" />
+    {/* <img src="/src/assets/vite.svg" alt="logo" /> */}
     <nav>
       <ul>
         <li>Inicio</li>
