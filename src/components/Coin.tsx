@@ -11,7 +11,7 @@ const Coin = ({ order, name, symbol, price, priceChange, code }: CoinProps) => {
   };
 
   return (
-    <div className="bg-blue-500">
+    <div>
       <h1>{order}</h1>
       <h2>{name}</h2>
       <p>{symbol}</p>
