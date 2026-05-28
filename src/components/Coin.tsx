@@ -5,23 +5,30 @@ const Coin = ({ order, name, symbol, price, priceChange, code }: CoinProps) => {
 
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-  const addToFavorites = () => {
+  const handleFavorites = () => {
     setIsFavorite(!isFavorite);
-    // alert("Añadido a favoritos");
   };
 
   return (
-    <div>
-      <h1>{order}</h1>
-      <h2>{name}</h2>
-      <p>{symbol}</p>
-      <p>{price}</p>
-      <p>{priceChange}</p>
-      <p>{code}</p>
-      <button onClick={addToFavorites}>
-        {isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
-      </button>
-    </div>
+   <tr className="coin-card [&>td]:px-4 [&>td]:py-3">
+      <td>{order}</td>
+      <td>
+        <div className="flex items-center gap-3">
+          <img src={symbol} alt={code} className="w-10 h-10 rounded-full" />
+          <div>
+            <span className="font-semibold">{name}</span>
+            <span className="text-sm text-gray-500">{code}</span>
+          </div>
+        </div>
+      </td>
+      <td>{price}</td>
+      <td>{priceChange}</td>
+      <td>
+        <button onClick={handleFavorites}>
+          {isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
+        </button>
+      </td>
+    </tr>
   );
 };
 
