@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import type { CoinProps } from "../interfaces/Coin";
 import coins from "../data/coins";
 import CoinsTable from "./CoinsTable";
+import CoinsNotFound from "./CoinsNotFound";
 
 const CoinsContainer = () => {
   const [coinsList, setCoinsList] = useState<CoinProps[]>(coins);
@@ -29,9 +30,7 @@ const CoinsContainer = () => {
           <CoinsTable coins={coinsList} />
         ) :
         (
-          <div className="flex justify-center items-center h-full bg-white rounded-lg shadow-sm overflow-hidden py-12">
-            <p>No se encontraron resultados.</p>
-          </div>
+         <CoinsNotFound/>
         )}
 
     </>
