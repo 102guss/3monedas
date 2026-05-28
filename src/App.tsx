@@ -1,5 +1,5 @@
 import Header from "./components/Header";
-import CoinsTable from "./components/CoinsTable";
+import CoinsContainer from "./components/CoinsContainer";
 
 function App() {
   return (
@@ -8,11 +8,11 @@ function App() {
       <main className="bg-white">
         <h1>Lista de criptomonedas</h1>
         <div className="coins-list">
-          <CoinsTable />
+          <CoinsContainer />
         </div>
       </main>
     </>
-  );
+  );  
 }
 
 export default App;

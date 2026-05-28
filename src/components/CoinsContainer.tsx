@@ -3,7 +3,7 @@ import type { CoinProps } from "../interfaces/Coin";
 import coins from "../data/coins";
 import Coin from "./Coin";
 
-const CoinsTable = () => {  
+const CoinsContainer = () => {  
   const [coinsList, setCoinsList] = useState<CoinProps[]>(coins);
   const searchInput = useRef<HTMLInputElement>(null);
 
@@ -23,8 +23,8 @@ const CoinsTable = () => {
         ref={searchInput}
         onChange={handleSearch}
       />
-      <table className="w-full text-left border-collapse">
-        <thead className="bg-gray-100">
+      <table className="w-full text-left border-collapse bg-white">
+        <thead className="bg-gray-200">
           <tr>
             <th className="px-4 py-2 text-gray-600 font-medium">Orden</th>
             <th className="px-4 py-2 text-gray-600 font-medium">Nombre</th>
@@ -42,4 +42,4 @@ const CoinsTable = () => {
   );
 };
 
-export default CoinsTable;
+export default CoinsContainer;
