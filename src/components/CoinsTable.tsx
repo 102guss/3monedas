@@ -16,6 +16,7 @@ const CoinsTable = ({ coins }: { coins: CoinProps[] }) => {
         <tbody className="divide-y divide-gray-200">
         {coins.map((coin) => (
           <Coin
+            id={coin.id}
             key={coin.symbol}
             name={coin.name}
             symbol={coin.symbol}
