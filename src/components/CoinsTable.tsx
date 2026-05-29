@@ -16,13 +16,12 @@ const CoinsTable = ({ coins }: { coins: CoinProps[] }) => {
         <tbody className="divide-y divide-gray-200">
         {coins.map((coin) => (
           <Coin
-            key={coin.order}
-            order={coin.order}
+            key={coin.symbol}
             name={coin.name}
             symbol={coin.symbol}
-            price={coin.price}
-            priceChange={coin.priceChange}
-            code={coin.code}
+            current_price={coin.current_price}
+            price_change_percentage_24h={coin.price_change_percentage_24h}
+            image={coin.image}
           />
         ))}
       </tbody>

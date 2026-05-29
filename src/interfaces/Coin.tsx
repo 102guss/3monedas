@@ -1,8 +1,7 @@
 export interface CoinProps {
-  order: number;
   name: string;
   symbol: string;
-  price: number;
-  priceChange: number;
-  code: string;
+  current_price: number;
+  price_change_percentage_24h: number;
+  image: string;
 }
