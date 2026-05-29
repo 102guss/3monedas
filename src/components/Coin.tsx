@@ -34,7 +34,7 @@ const Coin = ({ id, name, symbol, current_price, price_change_percentage_24h, im
         </button>
       </td>
     </tr>
-  );
+  );        
 };
 
-export default Coin;
+export default Coin;    
