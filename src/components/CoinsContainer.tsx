@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CoinProps } from "../interfaces/Coin";
 import CoinsTable from "./CoinsTable";
 import CoinsNotFound from "./CoinsNotFound";
-import { URL_API, URL_COINS  } from "../constants/api";
+import { URL_API, URL_COINS,COINGECKO_API_KEY } from "../constants/api";
 
 const CoinsContainer = () => {
   const [coinsList, setCoinsList] = useState<CoinProps[]>([]);
@@ -12,7 +12,7 @@ const CoinsContainer = () => {
   const searchInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-     fetch( `${URL_API}/${URL_COINS}` )
+     fetch( `${URL_API}/${URL_COINS}&x_cg_demo_api_key=${COINGECKO_API_KEY}` )
       .then(response => response.json())
       .then(data => {
         setCoinsList(data)
@@ -28,7 +28,7 @@ const CoinsContainer = () => {
   }, [])
 
   const handleSearch = () => {
-    const searchValue = searchInput.current?.value || "";
+    const searchValue = searchInput.current?.value || ""; 
     const newCoinsList = coinsListOriginal.filter((coin) =>
       coin.name.toLowerCase().includes(searchValue.toLowerCase()),
     );
