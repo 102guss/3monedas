@@ -7,6 +7,7 @@ const CoinsContainer = () => {
   const [coinsList, setCoinsList] = useState<CoinProps[]>([]);
   const [coinsListOriginal, setCoinsListOriginal] = useState<CoinProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
   const searchInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -18,6 +19,7 @@ const CoinsContainer = () => {
       })
       .catch(error => {
         console.error("Error al obtener los datos:", error)
+        setError("Error al obtener los datos")
       })
       .finally(() => {
         setLoading(false)
@@ -35,6 +37,9 @@ const CoinsContainer = () => {
   if (loading) {
     return <div>Cargando...</div>
   }
+  if (error) {
+  return <div>{error}</div>
+}
   return (
     < >
       <input
