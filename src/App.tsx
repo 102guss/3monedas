@@ -1,17 +1,17 @@
-import Header from "./components/Header";
 import CoinsContainer from "./components/CoinsContainer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
 
 function App() {
   return (
-    <>
-      <Header />
-      <main className="bg-white">
-        <h1>Lista de criptomonedas</h1>
-        <div className="coins-list">
-          <CoinsContainer />
-        </div>
-      </main>
-    </>
+     <BrowserRouter>
+
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<CoinsContainer />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );  
 }
 
