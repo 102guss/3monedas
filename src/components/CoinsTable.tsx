@@ -11,6 +11,7 @@ const CoinsTable = ({ coins }: { coins: CoinProps[] }) => {
             <th className="px-4 py-2 text-gray-600 font-medium">Nombre</th>
             <th className="px-4 py-2 text-gray-600 font-medium">Código</th>
             <th className="px-4 py-2 text-gray-600 font-medium">Simbolo</th>
+            <th className="px-10 py-2 text-gray-600 font-medium">Favoritos</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
