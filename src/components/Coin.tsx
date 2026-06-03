@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { CoinProps } from "../interfaces/Coin";
-
+import { Link } from "react-router-dom";
 const Coin = ({ id, name, symbol, current_price, price_change_percentage_24h, image }: CoinProps) => {
 
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
@@ -10,16 +10,21 @@ const Coin = ({ id, name, symbol, current_price, price_change_percentage_24h, im
   };
 
   return (
-   <tr className="coin-card [&>td]:px-4 [&>td]:py-3">
-    <td className="px-6 py-4 text-sm text-gray-600">{id}</td>
-      <td className="px-6 py-4">  
-              <div className="flex items-center gap-3">
+    <tr className="coin-card [&>td]:px-4 [&>td]:py-3">
+      <td className="px-6 py-4 text-sm text-gray-600">{id}</td>
+      <td className="px-6 py-4">
+
+
+        <div className="flex items-center gap-3">
+          <Link to={`/coin/${id}`} className="flex items-center gap-3"></Link>
           <img src={image} alt={symbol} className="w-10 h-10 rounded-full" />
           <div className="flex flex-col">
-  <span className="font-semibold text-gray-900">{name}</span>
-  <span className="text-sm text-gray-500">{symbol}</span>
+            <span className="font-semibold text-gray-900">{name}</span>
+            <span className="text-sm text-gray-500">{symbol}</span>
           </div>
+
         </div>
+        <Link to={`/coin/${id}`} className="flex items-center gap-3"></Link>
 
 
       </td>
@@ -27,14 +32,14 @@ const Coin = ({ id, name, symbol, current_price, price_change_percentage_24h, im
       <td className={price_change_percentage_24h >= 0 ? "text-green-500" : "text-red-500"}>
         {price_change_percentage_24h >= 0 ? "+" : ""}{price_change_percentage_24h.toFixed(2)}%
       </td>
-      
+
       <td>
         <button onClick={handleFavorites}>
           {isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
         </button>
       </td>
     </tr>
-  );        
+  );
 };
 
 export default Coin;    
