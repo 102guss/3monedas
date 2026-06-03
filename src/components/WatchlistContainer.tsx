@@ -15,7 +15,8 @@ const WatchlistContainer = () => {
 
 
   useEffect(() => {
-    fetch(`${URL_API}/${URL_COINS}&x_cg_demo_api_key=${COINGECKO_API_KEY}`)
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    fetch(`${URL_API}/${URL_COINS}&x_cg_demo_api_key=${COINGECKO_API_KEY}&ids=${favorites.join(",")}`)
     .then(response => response.json())
     .then(data => {
       setCoinsList(data)
