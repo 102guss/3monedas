@@ -6,9 +6,9 @@ const Layout = () => {
     return (
         <>
             <Header />
-            <main className="container mx-auto  py-8 ">
+            <main className="container mx-auto py-12 px-6 max-w-full">
 
-                <div className="coins-list ">
+                <div className="coins-list">
                     <Outlet />
 
                 </div>

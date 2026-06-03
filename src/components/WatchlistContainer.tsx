@@ -1,35 +1,51 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { CoinProps } from "../interfaces/Coin";
-import CoinsTable from "./CoinsTable";
+import WatchlistTable from "./WatchlistTable";
 import CoinsNotFound from "./CoinsNotFound";
 import { COINGECKO_API_KEY, URL_API, URL_COINS } from "../constants/api"
 
 const WatchlistContainer = () => {
-  const [coinsList, setCoinsList] = useState<CoinProps[]>([]);
+  const [coinsList, setCoinsList] = useState<CoinProps[]>(() => {
+    // No cargar datos inicialmente, solo inicializar como array vacío
+    return [];
+  });
   const [coinsListOriginal, setCoinsListOriginal] = useState<CoinProps[]>([]);
-  const [loading, setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(() => {
+    // Verificar si hay favoritos para determinar si debe mostrar loading
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    return favorites.length > 0;
+  });
   const [error, setError] = useState<string | null>(null)
+  const [initialized, setInitialized] = useState<boolean>(false);
   const searchInput = useRef<HTMLInputElement>(null);
 
 
 
 
-  useEffect(() => {
+  // Inicialización lazy - se ejecuta solo una vez cuando sea necesario
+  if (!initialized) {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    fetch(`${URL_API}/${URL_COINS}&x_cg_demo_api_key=${COINGECKO_API_KEY}&ids=${favorites.join(",")}`)
-      .then(response => response.json())
-      .then(data => {
-        setCoinsList(data)
-        setCoinsListOriginal(data)
-      })
-      .catch(error => {
-        console.error("Error al obtener los datos:", error)
-        setError("Error al obtener los datos")
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [])
+    
+    if (favorites.length > 0) {
+      // Cargar favoritos al inicializar
+      fetch(`${URL_API}/${URL_COINS}&x_cg_demo_api_key=${COINGECKO_API_KEY}&ids=${favorites.join(",")}`)
+        .then(response => response.json())
+        .then(data => {
+          setCoinsList(data);
+          setCoinsListOriginal(data);
+          setLoading(false);
+        })
+        .catch(error => {
+          console.error("Error al obtener los datos:", error);
+          setError("Error al obtener los datos");
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+    
+    setInitialized(true);
+  }
 
   const handleSearch = () => {
     const searchValue = searchInput.current?.value || "";
@@ -53,7 +69,7 @@ const WatchlistContainer = () => {
   return (
     <>
       <div className="flex justify-end">
-        <button onClick={handleClearFavorites} className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md mb-4">Limpiar favoritos</button>
+        <button onClick={handleClearFavorites} className="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-md mb-4 text-sm">Limpiar favoritos</button>
       </div>
       <input
         type="text"
@@ -64,7 +80,7 @@ const WatchlistContainer = () => {
       />
       {coinsList.length > 0 ?
         (
-          <CoinsTable coins={coinsList} />
+          <WatchlistTable coins={coinsList} />
         ) :
         (
           <CoinsNotFound />
