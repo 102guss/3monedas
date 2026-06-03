@@ -36,29 +36,42 @@ const CoinsContainer = () => {
   };
 
   if (loading) {
-    return <div>Cargando...</div>
+    return (
+      <div className="flex justify-center items-center py-8">
+        <div className="text-gray-600 text-lg">Cargando monedas...</div>
+      </div>
+    )
   }
+  
   if (error) {
-  return <div>{error}</div>
-}
+    return (
+      <div className="flex justify-center items-center py-8">
+        <div className="text-red-500 text-lg">{error}</div>
+      </div>
+    )
+  }
+  
   return (  
-    < >
-      <input
-        type="text"
-        placeholder="Buscar criptomoneda"
-        ref={searchInput}
-        onChange={handleSearch}
-        className="w-full bg-white px-4 py-3 text-lg rounded-lg"
-      />
-      {coinsList.length > 0 ?
-        (
+    <div className="max-w-6xl mx-auto p-4 space-y-6">
+      <div className="bg-white rounded-lg shadow-sm p-4">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Lista de Criptomonedas</h2>
+        <input
+          type="text"
+          placeholder="Buscar criptomoneda por nombre..."
+          ref={searchInput}
+          onChange={handleSearch}
+          className="w-full bg-gray-50 border border-gray-300 px-4 py-3 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      </div>
+      
+      <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+        {coinsList.length > 0 ? (
           <CoinsTable coins={coinsList} />
-        ) :
-        (
+        ) : (
           <CoinsNotFound />
         )}
-
-    </>
+      </div>
+    </div>
   );
 };
 
