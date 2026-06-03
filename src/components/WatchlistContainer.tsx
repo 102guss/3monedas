@@ -17,19 +17,19 @@ const WatchlistContainer = () => {
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
     fetch(`${URL_API}/${URL_COINS}&x_cg_demo_api_key=${COINGECKO_API_KEY}&ids=${favorites.join(",")}`)
-    .then(response => response.json())
-    .then(data => {
-      setCoinsList(data)
-      setCoinsListOriginal(data)
-    })
-    .catch(error => {
-      console.error("Error al obtener los datos:", error)
-      setError("Error al obtener los datos")
-    })
-    .finally(() => {
-  setLoading(false)
-})
-}, [])
+      .then(response => response.json())
+      .then(data => {
+        setCoinsList(data)
+        setCoinsListOriginal(data)
+      })
+      .catch(error => {
+        console.error("Error al obtener los datos:", error)
+        setError("Error al obtener los datos")
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }, [])
 
   const handleSearch = () => {
     const searchValue = searchInput.current?.value || "";
@@ -38,16 +38,23 @@ const WatchlistContainer = () => {
     );
     setCoinsList(newCoinsList);
   };
-
+  const handleClearFavorites = () => {
+    localStorage.removeItem("favorites");
+    setCoinsList([]);
+    setCoinsListOriginal([]);
+  };
   if (loading) {
-  return <div>Cargando...</div>
-}
- if (error) {
-  return <div>{error}</div>
-}
+    return <div>Cargando...</div>
+  }
+  if (error) {
+    return <div>{error}</div>
+  }
 
   return (
     <>
+      <div className="flex justify-end">
+        <button onClick={handleClearFavorites} className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md mb-4">Limpiar favoritos</button>
+      </div>
       <input
         type="text"
         placeholder="Buscar criptomoneda"
@@ -55,13 +62,13 @@ const WatchlistContainer = () => {
         onChange={handleSearch}
         className="w-full bg-white px-4 py-3 text-lg rounded-lg"
       />
-      {coinsList.length > 0 ? 
-      (
-        <CoinsTable coins={coinsList} />
-      ) : 
-      (
-       <CoinsNotFound/>
-      )}
+      {coinsList.length > 0 ?
+        (
+          <CoinsTable coins={coinsList} />
+        ) :
+        (
+          <CoinsNotFound />
+        )}
     </>
   );
 };
