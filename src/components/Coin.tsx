@@ -32,7 +32,9 @@ const Coin = ({ id, name, symbol, current_price, price_change_percentage_24h, im
       </td>
 
       <td>
-        <button onClick={handleFavorites}>
+        <button onClick={handleFavorites}
+        className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-1 py-0.5 rounded-md text-sm font-medium transition-colors"
+        >
           {isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
         </button>
       </td>
