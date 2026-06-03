@@ -16,16 +16,14 @@ const Coin = ({ id, name, symbol, current_price, price_change_percentage_24h, im
 
 
         <div className="flex items-center gap-3">
-          <Link to={`/coin/${id}`} className="flex items-center gap-3"></Link>
-          <img src={image} alt={symbol} className="w-10 h-10 rounded-full" />
-          <div className="flex flex-col">
-            <span className="font-semibold text-gray-900">{name}</span>
-            <span className="text-sm text-gray-500">{symbol}</span>
-          </div>
-
+          <Link to={`/coin/${id}`} className="flex items-center gap-3">
+            <img src={image} alt={symbol} className="w-10 h-10 rounded-full" />
+            <div className="flex flex-col">
+              <span className="font-semibold text-gray-900">{name}</span>
+              <span className="text-sm text-gray-500">{symbol}</span>
+            </div>
+          </Link>
         </div>
-        <Link to={`/coin/${id}`} className="flex items-center gap-3"></Link>
-
 
       </td>
       <td>${current_price.toFixed(2)}</td>

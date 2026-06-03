@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import NotFound from "./components/NotFound";
 import WatchlistContainer from "./components/WatchlistContainer";
+import CoinContainer from "./components/coinContainer";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<CoinsContainer />} />
           <Route path="watchlist" element={<WatchlistContainer />} />
-          <Route path="coin/:id" element={<WatchlistContainer />} />
+          <Route path="coin/:id" element={<CoinContainer />} />
           <Route path="*" element={<NotFound />}/>
         </Route>
       </Routes>
